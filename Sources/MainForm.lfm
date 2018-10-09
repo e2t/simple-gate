@@ -9,6 +9,7 @@ object Form1: TForm1
   Caption = 'Шандоры'
   ClientHeight = 135
   ClientWidth = 221
+  OnCreate = FormCreate
   Position = poDefault
   LCLVersion = '1.8.4.0'
   object ButtonRun: TButton
@@ -79,5 +80,15 @@ object Form1: TForm1
     ParentColor = True
     ReadOnly = True
     TabOrder = 2
+  end
+  object LabelVersion: TLabel
+    AnchorSideTop.Control = ButtonRun
+    AnchorSideTop.Side = asrCenter
+    Left = 8
+    Height = 15
+    Top = 109
+    Width = 45
+    Caption = 'Версия: '
+    ParentColor = False
   end
 end

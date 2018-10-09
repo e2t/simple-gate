@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, ComputationWeight, DryConversion;
+  ExtCtrls, ComputationWeight, DryConversion, FileInfo;
 
 type
 
@@ -14,10 +14,12 @@ type
 
   TForm1 = class(TForm)
     ButtonRun: TButton;
+    LabelVersion: TLabel;
     LabeledEditWidth: TLabeledEdit;
     LabeledEditHeight: TLabeledEdit;
     LabeledEditWeight: TLabeledEdit;
     procedure ButtonRunClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -106,6 +108,20 @@ begin
     end;
   end;
   LabeledEditWeight.Text := Format('%f', [Weight]);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  FileVerInfo: TFileVersionInfo;
+begin
+  FileVerInfo := TFileVersionInfo.Create(nil);
+  try
+    FileVerInfo.ReadFileInfo;
+    LabelVersion.Caption := LabelVersion.Caption +
+      FileVerInfo.VersionStrings.Values['FileVersion'];
+  finally
+    FileVerInfo.Free;
+  end;
 end;
 
 end.
