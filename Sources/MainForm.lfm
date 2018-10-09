@@ -1,0 +1,83 @@
+object Form1: TForm1
+  Left = 1216
+  Height = 135
+  Top = 333
+  Width = 221
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  BorderWidth = 8
+  Caption = 'Шандоры'
+  ClientHeight = 135
+  ClientWidth = 221
+  Position = poDefault
+  LCLVersion = '1.8.4.0'
+  object ButtonRun: TButton
+    Left = 141
+    Height = 25
+    Top = 104
+    Width = 75
+    Caption = 'Расчет'
+    Default = True
+    OnClick = ButtonRunClick
+    TabOrder = 3
+  end
+  object LabeledEditWidth: TLabeledEdit
+    Left = 136
+    Height = 23
+    Top = 8
+    Width = 80
+    EditLabel.AnchorSideTop.Control = LabeledEditWidth
+    EditLabel.AnchorSideTop.Side = asrCenter
+    EditLabel.AnchorSideRight.Control = LabeledEditWidth
+    EditLabel.AnchorSideBottom.Control = LabeledEditWidth
+    EditLabel.AnchorSideBottom.Side = asrBottom
+    EditLabel.Left = 30
+    EditLabel.Height = 15
+    EditLabel.Top = 12
+    EditLabel.Width = 103
+    EditLabel.Caption = 'Ширина рамы, мм'
+    EditLabel.ParentColor = False
+    LabelPosition = lpLeft
+    TabOrder = 0
+  end
+  object LabeledEditHeight: TLabeledEdit
+    Left = 136
+    Height = 23
+    Top = 40
+    Width = 80
+    EditLabel.AnchorSideTop.Control = LabeledEditHeight
+    EditLabel.AnchorSideTop.Side = asrCenter
+    EditLabel.AnchorSideRight.Control = LabeledEditHeight
+    EditLabel.AnchorSideBottom.Control = LabeledEditHeight
+    EditLabel.AnchorSideBottom.Side = asrBottom
+    EditLabel.Left = 37
+    EditLabel.Height = 15
+    EditLabel.Top = 44
+    EditLabel.Width = 96
+    EditLabel.Caption = 'Высота щита, мм'
+    EditLabel.ParentColor = False
+    LabelPosition = lpLeft
+    TabOrder = 1
+  end
+  object LabeledEditWeight: TLabeledEdit
+    Left = 136
+    Height = 23
+    Top = 72
+    Width = 80
+    EditLabel.AnchorSideTop.Control = LabeledEditWeight
+    EditLabel.AnchorSideTop.Side = asrCenter
+    EditLabel.AnchorSideRight.Control = LabeledEditWeight
+    EditLabel.AnchorSideBottom.Control = LabeledEditWeight
+    EditLabel.AnchorSideBottom.Side = asrBottom
+    EditLabel.Left = 28
+    EditLabel.Height = 15
+    EditLabel.Top = 76
+    EditLabel.Width = 105
+    EditLabel.Caption = 'Масса шандора, кг'
+    EditLabel.ParentColor = False
+    LabelPosition = lpLeft
+    ParentColor = True
+    ReadOnly = True
+    TabOrder = 2
+  end
+end

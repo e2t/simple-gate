@@ -1,0 +1,12 @@
+# Linux binary
+Sources/SimpleGate
+
+backup/
+lib/
+
+*.dbg
+*.exe
+*.res
+
+Dry/*
+!Dry/*.pas
