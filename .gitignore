@@ -6,7 +6,6 @@ lib/
 
 *.dbg
 *.exe
-*.res
 
 Dry/*
 !Dry/*.pas

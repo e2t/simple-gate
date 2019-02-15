@@ -19,8 +19,10 @@ function ConvertStrToFloat(const Text: string;
   out Number: Extended): TInputLineCode;
 
 function ToMPa(const Pa: Extended): Extended;
+function FromMPa(const MPa: Extended): Extended;
 function FromKg(const Kg: Extended): Extended;
 function ToMm(const Meters: Extended): Extended;
+function FromMm(const Millimetres: Extended): Extended;
 
 implementation
 
@@ -59,6 +61,11 @@ begin
   Result := Pa / 1e6;
 end;
 
+function FromMPa(const MPa: Extended): Extended;
+begin
+  Result := MPa * 1e6;
+end;
+
 function FromKg(const Kg: Extended): Extended;
 begin
   Result := Kg * GravAcceleration;
@@ -67,6 +74,11 @@ end;
 function ToMm(const Meters: Extended): Extended;
 begin
   Result := Meters * 1e3;
+end;
+
+function FromMm(const Millimetres: Extended): Extended;
+begin
+  Result := Millimetres / 1e3;
 end;
 
 end.
