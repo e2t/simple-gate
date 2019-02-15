@@ -6,6 +6,8 @@ lib/
 
 *.dbg
 *.exe
+*.res
+!SimpleGate.res
 
 Dry/*
 !Dry/*.pas
