@@ -2,7 +2,8 @@
 Десктопное GUI-приложение для расчета шандорных затворов.
 
 ### Зависимости
-- [Lazarus 1.6+](https://www.lazarus-ide.org/)
+- Python 3.7
+- Tkinter
 
 ### Авторские права
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
