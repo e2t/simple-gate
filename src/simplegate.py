@@ -16,10 +16,10 @@ class SimpleGate:
     """Расчет шандора."""
 
     MIN_WIDTH = Distance(0.3)
-    MAX_WIDTH = Distance(5.0)
+    MAX_WIDTH = Distance(3.0)
 
     MIN_HEIGHT = Distance(0.3)
-    MAX_HEIGHT = Distance(5.0)
+    MAX_HEIGHT = Distance(8.0)
 
     @property
     def frame_mass(self) -> Mass:
@@ -36,6 +36,11 @@ class SimpleGate:
         """Масса шандора."""
         return self._mass
 
+    @property
+    def designation(self) -> str:
+        """Обозначение шандора."""
+        return self._designation
+
     def __init__(self, input_data: InputData) -> None:
         """Конструктор и одновременно расчет."""
         self._input_data = input_data
@@ -47,6 +52,8 @@ class SimpleGate:
         if not self.MIN_HEIGHT <= self._input_data.gate_h <= self.MAX_HEIGHT:
             raise InputDataError('Высота щита от {:.0f} до {:.0f} мм.'.format(
                 self.MIN_HEIGHT * 1e3, self.MAX_HEIGHT * 1e3))
+
+        self._designation = self._create_designation()
 
         self._mass_sg01ad001 = self._calc_mass_sg01ad001()
         self._mass_sg01ad002 = self._calc_mass_sg01ad002()
@@ -65,6 +72,10 @@ class SimpleGate:
         self._gate_mass = self._calc_gate_mass()
 
         self._mass = self._calc_mass()
+
+    def _create_designation(self) -> str:
+        return 'Шандор {}х{}'.format(self._input_data.frame_w,
+                                     self._input_data.gate_h)
 
     # Швеллер.
     def _calc_mass_sg01ad001(self) -> Mass:

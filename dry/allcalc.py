@@ -13,6 +13,8 @@ Velocity = NewType('Velocity', float)              # Векторная скор
 Area = NewType('Area', float)                      # Площадь, м2.
 Acceleration = NewType('Acceleration', float)      # Ускорение, м/с2.
 
+GRAV_ACC = Acceleration(9.80665)
+
 
 class InputDataError(Exception):
     """Класс исключений, связанный с неправильными входными данными."""

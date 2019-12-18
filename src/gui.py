@@ -1,6 +1,6 @@
 """Интерфейс программы, ввод и вывод данных."""
 import sys
-from tkinter import Tk, W, E, N, S, DISABLED, Event
+from tkinter import Tk, W, E, N, DISABLED, Event
 from tkinter.ttk import Frame, Label, Entry, Button
 from tkinter.scrolledtext import ScrolledText
 from simplegate import SimpleGate, InputData
@@ -8,21 +8,19 @@ sys.path.append(f'{sys.path[0]}/..')
 from dry.allgui import MyFrame, print_in_disabled_text, format_params
 from dry.allcalc import InputDataError
 
-from typing import Type
-from tkinter import Widget, LabelFrame
 
 class MainForm(MyFrame):
     """Главное окно программы."""
 
     def __init__(self, root: Tk) -> None:
         """Конструктор формы."""
-        root.title('Расчет шандора (v1.1.0)')
+        root.title('Расчет шандора (v1.2.0)')
         super().__init__(root)
 
         ENT_W = 7
 
         subframe = Frame(self)
-        subframe.grid(row=0, column=0, sticky=W)
+        subframe.grid(row=0, column=0, sticky=W + N)
 
         row = 0
         Label(subframe, text='Ширина рамы:').grid(row=row, column=0, sticky=W)
@@ -36,8 +34,8 @@ class MainForm(MyFrame):
         self._ent_gate_h.grid(row=row, column=1, sticky=W + E)
         Label(subframe, text='мм').grid(row=row, column=2, sticky=W)
 
-        self._memo = ScrolledText(self, state=DISABLED, height=1, width=30)
-        self._memo.grid(row=0, column=1, sticky=W + E + N + S)
+        self._memo = ScrolledText(self, state=DISABLED, height=4, width=30)
+        self._memo.grid(row=0, column=1, sticky=W + E)
 
         Button(self, text='Расчет', command=self._run).grid(row=2, column=1,
                                                             sticky=E)
@@ -66,11 +64,12 @@ class MainForm(MyFrame):
             self._print_error(str(excp))
             return
 
+        output = sg.designation + '\n'
         lines = []
         lines.append(('Общая масса', '{:.0f} кг'.format(sg.mass)))
         lines.append(('Рама', '{:.0f} кг'.format(sg.frame_mass)))
         lines.append(('Щит', '{:.0f} кг'.format(sg.gate_mass)))
-        output = format_params(lines)
+        output += format_params(lines)
         self._output(output)
 
     def _on_press_enter(self, _: Event) -> None:

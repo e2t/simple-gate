@@ -4,7 +4,8 @@ from tkinter import Text, NORMAL, END, DISABLED
 from tkinter.ttk import Widget, Frame, LabelFrame, Entry
 from tkinter.scrolledtext import ScrolledText
 from abc import abstractmethod
-from .allcalc import Distance
+from math import radians
+from .allcalc import Distance, VolumeFlowRate, Angle
 
 
 def convert_str_to_positive_float(text: str) -> float:
@@ -90,4 +91,17 @@ class MyFrame(Frame):
         value = self._get_opt_positive_float_from_entry(entry)
         if value is not None:
             return Distance(value / 1e3)  # мм -> м
+        return None
+
+    def _get_opt_l_s_from_entry(
+            self, entry: Entry) -> Optional[VolumeFlowRate]:
+        value = self._get_opt_positive_float_from_entry(entry)
+        if value is not None:
+            return VolumeFlowRate(value / 1e3)  # л/с -> м3/с
+        return None
+
+    def _get_opt_deg_from_entry(self, entry: Entry) -> Optional[Angle]:
+        value = self._get_opt_positive_float_from_entry(entry)
+        if value is not None:
+            return Angle(radians(value))  # градусы -> радианы
         return None
