@@ -1,8 +1,7 @@
 """Расчет шандорного затвора."""
-import sys
 from typing import NamedTuple
-sys.path.append(f'{sys.path[0]}/..')
 from dry.allcalc import Mass, Distance, InputDataError
+from dry.allgui import fstr
 
 
 class InputData(NamedTuple):
@@ -46,12 +45,14 @@ class SimpleGate:
         self._input_data = input_data
 
         if not self.MIN_WIDTH <= self._input_data.frame_w <= self.MAX_WIDTH:
-            raise InputDataError('Ширина рамы от {:.0f} до {:.0f} мм.'.format(
-                self.MIN_WIDTH * 1e3, self.MAX_WIDTH * 1e3))
+            raise InputDataError('Ширина рамы от {} до {} мм.'.format(
+                fstr(self.MIN_WIDTH * 1e3, '%.0f'),
+                fstr(self.MAX_WIDTH * 1e3, '%.0f')))
 
         if not self.MIN_HEIGHT <= self._input_data.gate_h <= self.MAX_HEIGHT:
-            raise InputDataError('Высота щита от {:.0f} до {:.0f} мм.'.format(
-                self.MIN_HEIGHT * 1e3, self.MAX_HEIGHT * 1e3))
+            raise InputDataError('Высота щита от {} до {} мм.'.format(
+                fstr(self.MIN_HEIGHT * 1e3, '%.0f'),
+                fstr(self.MAX_HEIGHT * 1e3, '%.0f')))
 
         self._designation = self._create_designation()
 
@@ -74,8 +75,13 @@ class SimpleGate:
         self._mass = self._calc_mass()
 
     def _create_designation(self) -> str:
-        return 'Шандор {}х{}'.format(self._input_data.frame_w,
-                                     self._input_data.gate_h)
+        def fstr_ng(value: float, precision: int) -> str:
+            if value.is_integer():
+                return fstr(value, f'%.{precision}f')
+            return fstr(value)
+
+        return 'Шандор {}х{}'.format(fstr_ng(self._input_data.frame_w, 1),
+                                     fstr_ng(self._input_data.gate_h, 1))
 
     # Швеллер.
     def _calc_mass_sg01ad001(self) -> Mass:
